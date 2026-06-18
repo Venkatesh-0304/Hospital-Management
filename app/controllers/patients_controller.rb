@@ -12,4 +12,14 @@ class PatientsController < ApplicationController
 
   def edit
   end
+
+  def create
+    @patient = Patient.new(patients_params)
+
+    if @patient.save
+      redirect_to patients_path, notice: "Patient added successfullt"
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
 end
