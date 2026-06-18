@@ -1,0 +1,28 @@
+<%= form_with model: patient do |form|%>
+  <% if patient.errors.any? %>
+    <ul>
+      <% patient.errors.full_messages.each do |message|%>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name%>
+  </div>
+
+  <div>
+    <%= form.label :age %>
+    <%= form.number_field :age%>
+  </div>
+
+  <div>
+    <%= form.label :gender %>
+    <%= form.select :gender, ["Male", "Female", "Others"] %>
+  </div>
+
+  <div>
+    <%= form.submit%>
+  </div>
+<% end %>
