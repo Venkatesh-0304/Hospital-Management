@@ -23,6 +23,14 @@ class PatientsController < ApplicationController
     end
   end
 
+  def update
+    if @patient.update(patients_params)
+      redirect_to patients_path, notice: "Patient updated successfully"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def patients_params
