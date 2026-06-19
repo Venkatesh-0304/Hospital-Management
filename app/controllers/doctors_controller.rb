@@ -22,4 +22,26 @@ class DoctorsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+  def update
+    if @doctor.update(set_doctor_params)
+      params.require(:doctor).permit(:name, :specialization)
+    else
+      render :edit, status: :unprocessabel_entity
+    end
+  end
+
+  def destroy
+    @doctory.destroy
+    redirect_to doctors_path, notice: "Doctor deleted successfully"
+  end
+
+  private
+
+  def set_doctor
+    @doctor = Doctor.find(params[:id])
+  end
+
+  def set_doctor_params
+    params.require(:doctor).permit(:name, :specialization)
+  end
 end
